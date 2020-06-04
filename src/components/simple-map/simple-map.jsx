@@ -8,7 +8,7 @@ import { ComposableMap,
   } from "react-simple-maps";
 
 const geoUrl =
-  "/gadm36_IND_1.json";
+  "/maps/IND_1.json";
 
 // const markers = [
 //     {
@@ -25,8 +25,9 @@ const geoUrl =
 //   ];
 
 export const MapChart = ({setTooltipContent}) => {
-  const handleClick = geo => () => {
-    console.log(geo);
+  const handleClick = geo => (e) => {
+    e.preventDefault();
+    console.log(geo.NAME_1);
    
   };
   return(
@@ -72,7 +73,8 @@ export const MapChart = ({setTooltipContent}) => {
               outline: "none",
            }
          }}
-         onClick={handleClick(geo.properties)}/>)
+        onClick={handleClick(geo.properties)}
+         />)
         }
 </ Geographies>
 
