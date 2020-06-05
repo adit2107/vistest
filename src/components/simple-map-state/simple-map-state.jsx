@@ -5,7 +5,8 @@ import ReactDOM from "react-dom";
 import { ComposableMap,
     Geographies,
     Geography,
-    Marker
+    Marker,
+    ZoomableGroup
     } from "react-simple-maps";
 
 import { render } from '@testing-library/react';
@@ -33,7 +34,7 @@ export const StateMap = (props) => {
       height: "auto",
    }}
 >
-
+<ZoomableGroup>
 <Geographies  geography={geoUrl}>  
   {({ geographies }) =>
             geographies.map(geo => <Geography key={geo.rsmKey} geography={geo} fill="" stroke="" strokeWidth="0.5"
@@ -72,6 +73,7 @@ export const StateMap = (props) => {
           </text>
         </Marker>
       ))}
+      </ZoomableGroup>
 </ ComposableMap>
     )
 }
