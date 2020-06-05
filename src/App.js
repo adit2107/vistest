@@ -3,15 +3,23 @@ import ReactDOM from "react-dom";
 
 import './App.css';
 //import {SimpleMap} from './components/simple-map/simple-map'
-import { MapChart } from './components/simple-map/simple-map'
+import { SimpleMap } from './components/simple-map/simple-map';
+import { StateMap } from './components/simple-map-state/simple-map-state'
 import ReactTooltip from "react-tooltip";
 
 function App() {
-    const [content, setContent] = useState("");
+  const [stateclicked, setStateShow] = useState("");
+  const [content, setContent] = useState("");
+
+  function handleStateClick(stateclicked){
+setStateShow(stateclicked);
+  }
+    
     return (
       <div>
-        <MapChart setTooltipContent={setContent} />
-        <ReactTooltip>{content}</ReactTooltip>
+    {stateclicked ? <StateMap showstate={stateclicked}/> : 
+    [<SimpleMap key={'SimpleMap'} onStateClick={handleStateClick} setTooltipContent={setContent} />, <ReactTooltip key={'ReactTooltip'}>{content}</ReactTooltip>]}
+    
       </div>
     );
   }
