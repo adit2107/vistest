@@ -24,13 +24,18 @@ const geoUrl =
 
 //   ];
 
-export const MapChart = ({setTooltipContent}) => {
+export const MapChart = ({setTooltipContent}, props) => {
+  const [isStateShown, setState] = React.useState(false);
+
   const handleClick = geo => (e) => {
     e.preventDefault();
     console.log(geo.NAME_1);
-   
+    setState(true);
   };
+
+  
   return(
+  
 <ComposableMap
       projection="geoMercator"
       projectionConfig={{ scale: 500, center: [78.167343, 21.717407]}}
@@ -42,6 +47,7 @@ export const MapChart = ({setTooltipContent}) => {
    }}
    data-tip=""
 >
+{isStateShown && <StateMap stateval={isStateShown}/>}
 
 <Geographies  geography={geoUrl}>  
 {({ geographies }) =>
@@ -55,7 +61,7 @@ export const MapChart = ({setTooltipContent}) => {
           }} 
           style={{
             default: {
-               fill: "#EAEAEC",
+               fill: "#F4F4F5",
                stroke: "#B4B4BB",
                strokeWidth: 0.25,
                outline: "none",
@@ -91,5 +97,7 @@ export const MapChart = ({setTooltipContent}) => {
         </Marker>
       ))} */}
 </ ComposableMap>
+
   );
+  
 }
